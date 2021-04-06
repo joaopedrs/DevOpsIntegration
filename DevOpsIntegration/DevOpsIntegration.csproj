@@ -171,6 +171,7 @@
     <Content Include="Estilos\Icones\gear.png" />
     <Content Include="Estilos\style.css" />
     <Content Include="index.aspx" />
+    <Content Include="Portal\VisConfiguracao.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -191,6 +192,13 @@
     </Compile>
     <Compile Include="Portal\mpSuperior.Master.designer.cs">
       <DependentUpon>mpSuperior.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Portal\VisConfiguracao.aspx.cs">
+      <DependentUpon>VisConfiguracao.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Portal\VisConfiguracao.aspx.designer.cs">
+      <DependentUpon>VisConfiguracao.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

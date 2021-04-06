@@ -33,7 +33,7 @@
                         </ul>
                     </li>
                 </ul>
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="VisConfiguracao.aspx">
                     <img src="../Estilos/Icones/gear.png" alt="Configuração" width="20" height="20">
                 </a>
             </div>
