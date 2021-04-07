@@ -171,6 +171,7 @@
     <Content Include="Estilos\Icones\gear.png" />
     <Content Include="Estilos\style.css" />
     <Content Include="index.aspx" />
+    <Content Include="Portal\EsqLateral.aspx" />
     <Content Include="Portal\VisConfiguracao.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -185,6 +186,13 @@
     </Compile>
     <Compile Include="index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Portal\EsqLateral.aspx.cs">
+      <DependentUpon>EsqLateral.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Portal\EsqLateral.aspx.designer.cs">
+      <DependentUpon>EsqLateral.aspx</DependentUpon>
     </Compile>
     <Compile Include="Portal\mpSuperior.Master.cs">
       <DependentUpon>mpSuperior.Master</DependentUpon>

@@ -7,14 +7,9 @@ using System.Web.UI.WebControls;
 
 namespace DevOpsIntegration.Portal
 {
-    public partial class VisConfiguracao : System.Web.UI.Page
+    public partial class EsqLateral : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btnSalvar_Click(object sender, EventArgs e)
         {
 
         }
