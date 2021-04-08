@@ -4,39 +4,51 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
     <html xmlns="http://www.w3.org/1999/xhtml">
+
     <body>
-        <form id="form" runat="server">
-            <div class="container-fluid" style="border:1px solid black">
-                <div class="row">
-                    <div class="col-lg-2" style="border:1px solid red">        
-                        <div class="list-group" id="list-tab" role="tablist">
-                            <a class="list-group-item list-group-item-action active" id="list-home-list" data-bs-toggle="list" href="#list-home" role="tab" aria-controls="home">Home</a>
-                            <a class="list-group-item list-group-item-action" id="list-profile-list" data-bs-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Profile</a>
-                            <a class="list-group-item list-group-item-action" id="list-messages-list" data-bs-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Messages</a>
-                            <a class="list-group-item list-group-item-action" id="list-settings-list" data-bs-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Settings</a>
+        <script>
+            $(function () {
+                $('#home').tab('show')
+            })
+        </script>
+        <div class="divForm" id="divForm">
+            <form id="form" runat="server">
+                <div class="d-inline-block">
+                    <div class="row">
+                       <div class="list-group" id="minhaLista" role="tablist">
+  <a class="list-group-item list-group-item-action active" data-toggle="list" href="#home" role="tab">Home</a>
+  <a class="list-group-item list-group-item-action" data-toggle="list" href="#perfil" role="tab">Perfil</a>
+  <a class="list-group-item list-group-item-action" data-toggle="list" href="#mensagens" role="tab">Mensagens</a>
+  <a class="list-group-item list-group-item-action" data-toggle="list" href="#configuracoes" role="tab">Configurações</a>
+</div>
+
+<div class="tab-content">
+  <div class="tab-pane active" id="home" role="tabpanel">.1..</div>
+  <div class="tab-pane" id="perfil" role="tabpanel">.3..</div>
+  <div class="tab-pane" id="mensagens" role="tabpanel">..2.</div>
+  <div class="tab-pane" id="configuracoes" role="tabpanel">5...</div>
+</div>
+
+<script>
+    $(function () {
+        $('#minhaLista a').on('click', function (e) {
+            e.preventDefault()
+            $(this).tab('show')
+        })
+    })
+</script>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm">
+                            <%--<asp:Button runat="server" ID="btnEnviar" OnClick="btnEnviar_Click" Text="Enviar" CssClass="btn btn-primary w-50 p-1 float-md-end h-70 d-inline-block" />
+                            <asp:Button runat="server" ID="btnLimpar" OnClick="btnLimpar_Click" Text="Limpar" CssClass="btn btn-secondary w-50 p-1 float-md-end h-70 d-inline-block" />--%>
                         </div>
                     </div>
                 </div>
-            </div>
-        
-            <div class="container-fluid" style="border:1px solid black">
-                <div class="row">
-                    <div class="col-lg-6" style="border:1px solid red">
-                        <asp:Label runat="server" ID="lbURL">URL:</asp:Label>
-                        <asp:TextBox runat="server" ID="txtURL" CssClass="form-control"></asp:TextBox>
-                        <asp:Label runat="server" ID="lbAcessToken">Access Token:</asp:Label>
-                        <asp:TextBox runat="server" ID="txtAcessToken" CssClass="form-control" TextMode="Password"></asp:TextBox>
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm">
-                        <asp:Button runat="server" ID="btnSalvar" OnClick="btnSalvar_Click" Text="Salvar" CssClass="btn btn-primary w-50 p-1 float-md-end h-70 d-inline-block" />
-                    </div>
-                </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </body>
     </html>
 </asp:Content>

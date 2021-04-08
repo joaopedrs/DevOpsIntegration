@@ -169,7 +169,7 @@
     <Content Include="Estilos\bootstrap\js\bootstrap.js" />
     <Content Include="Estilos\bootstrap\js\bootstrap.min.js" />
     <Content Include="Estilos\Icones\gear.png" />
-    <Content Include="Estilos\style.css" />
+    <Content Include="Estilos\Css\style.css" />
     <Content Include="index.aspx" />
     <Content Include="Portal\EsqLateral.aspx" />
     <Content Include="Portal\VisConfiguracao.aspx" />
@@ -242,7 +242,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Estilos\JQuery\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
