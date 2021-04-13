@@ -40,6 +40,7 @@
                                 </div>
                                 <asp:Label runat="server" ID="lbWorkItem">Principal WorkItem:</asp:Label>
                                 <asp:TextBox runat="server" ID="txtWorkItem" CssClass="form-control"></asp:TextBox>
+                                <img src="../Estilos/Icones/geara.png" data-toggle="tooltip" data-placement="top" title="Tooltip on top" />
                             </div>
                         </div>
                     </div>
