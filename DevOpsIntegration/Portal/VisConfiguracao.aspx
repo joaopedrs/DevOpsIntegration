@@ -11,32 +11,40 @@
                     <div class="col-2">
                         <div class="d-inline-block">
                             <div class="list-group" id="minhaLista" role="tablist">
-                                <a class="list-group-item list-group-item-action active" data-toggle="list" href="#home" role="tab">Home</a>
-                                <a class="list-group-item list-group-item-action" data-toggle="list" href="#perfil" role="tab">Perfil</a>
-                                <a class="list-group-item list-group-item-action" data-toggle="list" href="#mensagens" role="tab">Mensagens</a>
-                                <a class="list-group-item list-group-item-action" data-toggle="list" href="#configuracoes" role="tab">Configurações</a>
+                                <a class="list-group-item list-group-item-action active" data-toggle="list" href="#autorizacao" role="tab">Autorização</a>
+                                <a class="list-group-item list-group-item-action" data-toggle="list" href="#sprint" role="tab">Sprint</a>
                             </div>
                         </div>
                     </div>
                     <div class="col-9">
                         <div class="tab-content">
-                            <div class="tab-pane active" id="home" role="tabpanel">
-                                <asp:Label runat="server" ID="lbCliente">Cliente:</asp:Label>
-                                <asp:TextBox runat="server" ID="txtCliente" CssClass="form-control"></asp:TextBox>
+                            <div class="tab-pane active" id="autorizacao" role="tabpanel">
+                                <asp:Label runat="server" ID="lbURL">DevOps URL:</asp:Label>
+                                <asp:TextBox runat="server" ID="txtURL" CssClass="form-control"></asp:TextBox>
+                                <asp:Label runat="server" ID="lbAccessToken">Access Token:</asp:Label>
+                                <asp:TextBox runat="server" ID="txtAccessToken" CssClass="form-control" TextMode="Password"></asp:TextBox>
                             </div>
-                            <div class="tab-pane" id="perfil" role="tabpanel">
-                                .2..
-                            </div>
-                            <div class="tab-pane" id="mensagens" role="tabpanel">
-                                ..3.
-                            </div>
-                            <div class="tab-pane" id="configuracoes" role="tabpanel">
-                                4...
+                            <div class="tab-pane" id="sprint" role="tabpanel">
+                                <asp:Label runat="server" ID="lbSprintAtiva">Sprint Ativa:</asp:Label>
+                                <select class="form-select" aria-label="Default select example" id="OpcSprintAtiva">
+                                    <option selected>Open this select menu</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="chkSprintAtiva" checked>
+                                    <label class="form-check-label" for="chkSprintAtiva">
+                                        Buscar Sprint Automaticamente
+                                    </label>
+                                </div>
+                                <asp:Label runat="server" ID="lbWorkItem">Principal WorkItem:</asp:Label>
+                                <asp:TextBox runat="server" ID="txtWorkItem" CssClass="form-control"></asp:TextBox>
                             </div>
                         </div>
                     </div>
-                        <div class="col-1"></div>
-                  </div>
+                </div>
+                <div class="col-1"></div>
             </form>
         </div>
     </body>
