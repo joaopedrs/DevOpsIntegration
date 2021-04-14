@@ -14,7 +14,7 @@ namespace DevOpsIntegration.Controller
         public string GetCurrent()
         {
             Uri url = new Uri("https://dev.azure.com/selbettidev");
-            VssCredentials token = new VssCredentials(new Microsoft.VisualStudio.Services.Common.VssBasicCredential(string.Empty, "2luaynzkhhbdwud3dowtqe5335qxwhxsnmaj5mvzkpqs37msgluq"));
+            VssCredentials token = new VssCredentials(new Microsoft.VisualStudio.Services.Common.VssBasicCredential(string.Empty, "xxx"));
             var connection = new VssConnection(url, token);
 
             var workItemTracking = connection.GetClient<WorkItemTrackingHttpClient>();
@@ -23,7 +23,7 @@ namespace DevOpsIntegration.Controller
             var iteration = workItemTracking.GetClassificationNodeAsync(teamProjectName, structureGroup: Microsoft.TeamFoundation.WorkItemTracking.WebApi.Models.TreeStructureGroup.Iterations, depth: 2).Result;
 
             List<IterationInfo> iterations = new List<IterationInfo>();
-            //iterations = iteration.Children.Select(name => new IterationInfo() { IdIteration = name.Id, DsNome = name.Name, DtInicio = Convert.ToDateTime(name.Attributes.ToArray()[0].Value), DtFim = Convert.ToDateTime(name.Attributes.ToArray()[1].Value) }).ToList();
+            iterations = iteration.Children.Select(name => new IterationInfo() { IdIteration = name.Id, DsNome = name.Name, DtInicio = (name.Attributes != null) ? Convert.ToDateTime(name.Attributes.ToArray()[0].Value) : DateTime.MinValue, DtFim = (name.Attributes != null) ? Convert.ToDateTime(name.Attributes.ToArray()[1].Value) : DateTime.MinValue }).ToList();
            
             return GetIteration(iteration);
         }
