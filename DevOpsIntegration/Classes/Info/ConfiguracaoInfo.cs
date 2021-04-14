@@ -11,5 +11,6 @@ namespace DevOpsIntegration.Classes.Info
         public String DsAccessToken { get; set; }
         public String DsSprintAtiva { get; set; }
         public String DsWorkItem { get; set; }
+        public bool StChkSprintAtiva { get; set; }
     }
 }

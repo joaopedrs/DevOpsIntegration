@@ -1,4 +1,5 @@
-﻿using DevOpsIntegration.Classes.Info;
+﻿using DevOpsIntegration.Classes.BLL;
+using DevOpsIntegration.Classes.Info;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,24 +13,31 @@ namespace DevOpsIntegration.Portal
 {
     public partial class VisConfiguracao : System.Web.UI.Page
     {
+        string _filename = "config.xml";
+        string _path = Path.GetDirectoryName(System.AppDomain.CurrentDomain.BaseDirectory);
+
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                CarregarDados();
+                PreencherDDLSprint();
+            }
         }
 
         protected void btnSalvar_Click(object sender, EventArgs e)
         {
-            // Create an instance of the CustomerData class and populate
-            // it with the data from the form.
+            string fullfilepath = string.Format(@"{0}\{1}", _path, _filename);
+
             ConfiguracaoInfo info = new ConfiguracaoInfo();
             info.DsUrl = txtURL.Text;
             info.DsAccessToken = txtAccessToken.Text;
             info.DsSprintAtiva = dllSprintAtiva.SelectedValue;
             info.DsWorkItem = txtWorkItem.Text;
+            info.StChkSprintAtiva = chkSprintAtiva.Checked;
 
-            // Create and XmlSerializer to serialize the data to a file
             XmlSerializer xs = new XmlSerializer(typeof(ConfiguracaoInfo));
-            using (FileStream fs = new FileStream("config.xml", FileMode.Create))
+            using (FileStream fs = new FileStream(fullfilepath, FileMode.Create))
             {
                 xs.Serialize(fs, info);
             }
@@ -37,24 +45,50 @@ namespace DevOpsIntegration.Portal
 
         private void CarregarDados()
         {
-            ConfiguracaoInfo info;
-            XmlSerializer xs = new XmlSerializer(typeof(ConfiguracaoInfo));
-            using (FileStream fs = new FileStream("config.xml", FileMode.Open))
-            {
-                // This will read the XML from the file and create the new instance
-                // of CustomerData
-                info = xs.Deserialize(fs) as ConfiguracaoInfo;
-            }
+            string fullfilepath = string.Format(@"{0}\{1}", _path, _filename);
 
-            // If the customer data was successfully deserialized we can transfer
-            // the data from the instance to the form.
-            if (info != null)
+            try
             {
-                txtURL.Text = info.DsUrl;
-                txtAccessToken.Text = info.DsAccessToken;
-                dllSprintAtiva.SelectedValue = info.DsSprintAtiva;
-                txtWorkItem.Text = info.DsWorkItem;
+                ConfiguracaoInfo info;
+                XmlSerializer xs = new XmlSerializer(typeof(ConfiguracaoInfo));
+                if (File.Exists(fullfilepath))
+                {
+                    using (FileStream fs = new FileStream(fullfilepath, FileMode.Open, FileAccess.ReadWrite))
+                    {
+                        info = xs.Deserialize(fs) as ConfiguracaoInfo;
+                    }
+                    if (info != null)
+                    {
+                        txtURL.Text = info.DsUrl;
+                        txtAccessToken.Text = info.DsAccessToken;
+                        dllSprintAtiva.SelectedValue = info.DsSprintAtiva;
+                        txtWorkItem.Text = info.DsWorkItem;
+                        chkSprintAtiva.Checked = info.StChkSprintAtiva;
+                    }
+                }
+                else
+                    LimparCampos();
             }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void PreencherDDLSprint()
+        {
+            IterationBLL bll = new IterationBLL();
+            //dllSprintAtiva.DataSource = bll.List();
+            var teste = bll.List();
+        }
+
+        private void LimparCampos()
+        {
+            txtURL.Text = string.Empty;
+            txtAccessToken.Text = string.Empty;
+            dllSprintAtiva.SelectedValue = string.Empty;
+            txtWorkItem.Text = string.Empty;
+            chkSprintAtiva.Checked = true;
         }
     }
 }

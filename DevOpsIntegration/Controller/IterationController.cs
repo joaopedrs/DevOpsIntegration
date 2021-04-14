@@ -1,4 +1,5 @@
-﻿using Microsoft.TeamFoundation.WorkItemTracking.WebApi;
+﻿using DevOpsIntegration.Classes.Info;
+using Microsoft.TeamFoundation.WorkItemTracking.WebApi;
 using Microsoft.VisualStudio.Services.Common;
 using Microsoft.VisualStudio.Services.WebApi;
 using System;
@@ -13,13 +14,17 @@ namespace DevOpsIntegration.Controller
         public string GetCurrent()
         {
             Uri url = new Uri("https://dev.azure.com/selbettidev");
-            VssCredentials token = new VssCredentials(new Microsoft.VisualStudio.Services.Common.VssBasicCredential(string.Empty, "xxx"));
+            VssCredentials token = new VssCredentials(new Microsoft.VisualStudio.Services.Common.VssBasicCredential(string.Empty, "2luaynzkhhbdwud3dowtqe5335qxwhxsnmaj5mvzkpqs37msgluq"));
             var connection = new VssConnection(url, token);
 
             var workItemTracking = connection.GetClient<WorkItemTrackingHttpClient>();
             Microsoft.TeamFoundation.Core.WebApi.ProjectHttpClient projClient = connection.GetClientAsync<Microsoft.TeamFoundation.Core.WebApi.ProjectHttpClient>().Result;
             string teamProjectName = "SHARE-4";
             var iteration = workItemTracking.GetClassificationNodeAsync(teamProjectName, structureGroup: Microsoft.TeamFoundation.WorkItemTracking.WebApi.Models.TreeStructureGroup.Iterations, depth: 2).Result;
+
+            List<IterationInfo> iterations = new List<IterationInfo>();
+            //iterations = iteration.Children.Select(name => new IterationInfo() { IdIteration = name.Id, DsNome = name.Name, DtInicio = Convert.ToDateTime(name.Attributes.ToArray()[0].Value), DtFim = Convert.ToDateTime(name.Attributes.ToArray()[1].Value) }).ToList();
+           
             return GetIteration(iteration);
         }
 
