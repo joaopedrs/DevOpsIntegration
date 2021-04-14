@@ -178,6 +178,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\BLL\RegistrarBLL.cs" />
+    <Compile Include="Classes\Info\ConfiguracaoInfo.cs" />
     <Compile Include="Classes\Info\RegistrarInfo.cs" />
     <Compile Include="Controller\IterationController.cs" />
     <Compile Include="Controller\WorkItemController.cs" />

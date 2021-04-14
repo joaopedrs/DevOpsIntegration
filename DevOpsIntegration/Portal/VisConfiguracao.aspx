@@ -26,12 +26,10 @@
                             </div>
                             <div class="tab-pane" id="sprint" role="tabpanel">
                                 <asp:Label runat="server" ID="lbSprintAtiva">Sprint Ativa:</asp:Label>
-                                <select class="form-select" aria-label="Default select example" id="OpcSprintAtiva">
-                                    <option selected>Open this select menu</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select>
+                                <asp:DropDownList runat="server" CssClass="form-select" ID="dllSprintAtiva">
+                                    <asp:ListItem>1</asp:ListItem>
+                                    <asp:ListItem>2</asp:ListItem>
+                                </asp:DropDownList>
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" value="" id="chkSprintAtiva" checked>
                                     <label class="form-check-label" for="chkSprintAtiva">
@@ -39,9 +37,12 @@
                                     </label>
                                 </div>
                                 <asp:Label runat="server" ID="lbWorkItem">Principal WorkItem:</asp:Label>
+                                <img src="../Estilos/Icones/info.png" width="15" height="15" data-toggle="tooltip" data-placement="top" title="(Descrição) WorkItem onde serão adicionado as tasks." />
                                 <asp:TextBox runat="server" ID="txtWorkItem" CssClass="form-control"></asp:TextBox>
-                                <img src="../Estilos/Icones/geara.png" data-toggle="tooltip" data-placement="top" title="Tooltip on top" />
                             </div>
+                        </div>
+                        <div class="divForm">
+                            <asp:Button Text="Salvar" runat="server" ID="btnSalvar" OnClick="btnSalvar_Click" CssClass="btn btn-primary mb-3" />
                         </div>
                     </div>
                 </div>
