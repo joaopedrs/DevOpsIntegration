@@ -14,7 +14,7 @@ namespace DevOpsIntegration.Controller
         public List<IterationInfo> List()
         {
             Uri url = new Uri("https://dev.azure.com/selbettidev");
-            VssCredentials token = new VssCredentials(new Microsoft.VisualStudio.Services.Common.VssBasicCredential(string.Empty, "xxx"));
+            VssCredentials token = new VssCredentials(new Microsoft.VisualStudio.Services.Common.VssBasicCredential(string.Empty, "2luaynzkhhbdwud3dowtqe5335qxwhxsnmaj5mvzkpqs37msgluq"));
             VssConnection connection = new VssConnection(url, token);
 
             WorkItemTrackingHttpClient workItemTracking = connection.GetClient<WorkItemTrackingHttpClient>();
@@ -28,7 +28,7 @@ namespace DevOpsIntegration.Controller
                 .Where(value => value.DtInicio != DateTime.MinValue && value.DtFim != DateTime.MinValue).ToList();
         }
 
-        private IterationInfo Get()
+        public IterationInfo GetCurrent()
         {
             return List().Where(value => value.DtInicio <= DateTime.Now.Date && value.DtFim >= DateTime.Now.Date).FirstOrDefault();
         }

@@ -13,22 +13,19 @@ namespace DevOpsIntegration.Portal
 {
     public partial class VisConfiguracao : System.Web.UI.Page
     {
-        string _filename = "config.xml";
-        string _path = Path.GetDirectoryName(System.AppDomain.CurrentDomain.BaseDirectory);
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                CarregarDados();
-                PreencherDDLSprint();
+                PreencherCampos();
+                //PreencherDDLSprint();
             }
         }
 
         protected void btnSalvar_Click(object sender, EventArgs e)
         {
-            string fullfilepath = string.Format(@"{0}\{1}", _path, _filename);
-
+            ConfiguracaoBLL bll = new ConfiguracaoBLL();
             ConfiguracaoInfo info = new ConfiguracaoInfo();
             info.DsUrl = txtURL.Text;
             info.DsAccessToken = txtAccessToken.Text;
@@ -36,50 +33,30 @@ namespace DevOpsIntegration.Portal
             info.DsWorkItem = txtWorkItem.Text;
             info.StChkSprintAtiva = chkSprintAtiva.Checked;
 
-            XmlSerializer xs = new XmlSerializer(typeof(ConfiguracaoInfo));
-            using (FileStream fs = new FileStream(fullfilepath, FileMode.Create))
-            {
-                xs.Serialize(fs, info);
-            }
+            bll.Salvar(info);
         }
 
-        private void CarregarDados()
+        private void PreencherCampos()
         {
-            string fullfilepath = string.Format(@"{0}\{1}", _path, _filename);
-
-            try
+            ConfiguracaoBLL bll = new ConfiguracaoBLL();
+            ConfiguracaoInfo info = bll.Carregar();
+            if (info != null)
             {
-                ConfiguracaoInfo info;
-                XmlSerializer xs = new XmlSerializer(typeof(ConfiguracaoInfo));
-                if (File.Exists(fullfilepath))
-                {
-                    using (FileStream fs = new FileStream(fullfilepath, FileMode.Open, FileAccess.ReadWrite))
-                    {
-                        info = xs.Deserialize(fs) as ConfiguracaoInfo;
-                    }
-                    if (info != null)
-                    {
-                        txtURL.Text = info.DsUrl;
-                        txtAccessToken.Text = info.DsAccessToken;
-                        dllSprintAtiva.SelectedValue = info.DsSprintAtiva;
-                        txtWorkItem.Text = info.DsWorkItem;
-                        chkSprintAtiva.Checked = info.StChkSprintAtiva;
-                    }
-                }
-                else
-                    LimparCampos();
+                txtURL.Text = info.DsUrl;
+                txtAccessToken.Text = info.DsAccessToken;
+                dllSprintAtiva.SelectedValue = info.DsSprintAtiva;
+                txtWorkItem.Text = info.DsWorkItem;
+                chkSprintAtiva.Checked = info.StChkSprintAtiva;
             }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            else
+                LimparCampos();
         }
 
         public void PreencherDDLSprint()
         {
+            //need adjust
             IterationBLL bll = new IterationBLL();
-            //dllSprintAtiva.DataSource = bll.List();
-            var teste = bll.List();
+            dllSprintAtiva.DataSource = bll.List();
         }
 
         private void LimparCampos()

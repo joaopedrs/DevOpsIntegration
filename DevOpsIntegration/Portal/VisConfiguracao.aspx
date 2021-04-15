@@ -28,8 +28,6 @@
                                 <div>
                                     <asp:Label runat="server" ID="lbSprintAtiva" AssociatedControlID="dllSprintAtiva">Sprint Ativa:</asp:Label>
                                     <asp:DropDownList runat="server" CssClass="form-select" ID="dllSprintAtiva">
-                                        <asp:ListItem>1</asp:ListItem>
-                                        <asp:ListItem>2</asp:ListItem>
                                     </asp:DropDownList>
 
                                     <asp:CheckBox runat="server" CssClass="form-check-label" ID="chkSprintAtiva" Checked="true" />

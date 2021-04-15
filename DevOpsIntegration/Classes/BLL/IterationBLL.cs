@@ -9,16 +9,16 @@ namespace DevOpsIntegration.Classes.BLL
 {
     public class IterationBLL
     {
-        public string List()
+        public List<IterationInfo> List()
+        {
+            IterationController iteration = new IterationController();
+            return iteration.List();
+        }
+
+        public IterationInfo GetCurrent()
         {
             IterationController iteration = new IterationController();
             return iteration.GetCurrent();
-        }
-
-        public void Get(IterationInfo info)
-        {
-            IterationController iteration = new IterationController();
-            //iteration.Get(info);
         }
     }
 }

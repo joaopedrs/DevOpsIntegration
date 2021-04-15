@@ -177,6 +177,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\BLL\ConfiguracaoBLL.cs" />
     <Compile Include="Classes\BLL\IterationBLL.cs" />
     <Compile Include="Classes\BLL\RegistrarBLL.cs" />
     <Compile Include="Classes\Info\ConfiguracaoInfo.cs" />
