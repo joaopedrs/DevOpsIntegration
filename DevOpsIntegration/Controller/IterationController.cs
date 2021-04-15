@@ -14,7 +14,7 @@ namespace DevOpsIntegration.Controller
         public List<IterationInfo> List()
         {
             Uri url = new Uri("https://dev.azure.com/selbettidev");
-            VssCredentials token = new VssCredentials(new Microsoft.VisualStudio.Services.Common.VssBasicCredential(string.Empty, "2luaynzkhhbdwud3dowtqe5335qxwhxsnmaj5mvzkpqs37msgluq"));
+            VssCredentials token = new VssCredentials(new Microsoft.VisualStudio.Services.Common.VssBasicCredential(string.Empty, "xxx"));
             VssConnection connection = new VssConnection(url, token);
 
             WorkItemTrackingHttpClient workItemTracking = connection.GetClient<WorkItemTrackingHttpClient>();
@@ -24,13 +24,13 @@ namespace DevOpsIntegration.Controller
 
             List<IterationInfo> iterations = new List<IterationInfo>();
             return iterations = iterationResult.Children
-                .Select(values => new IterationInfo() { IdIteration = values.Id, DsNome = values.Name, DtInicio = (values.Attributes != null) ? Convert.ToDateTime(values.Attributes.ToArray()[0].Value) : DateTime.MinValue, DtFim = (values.Attributes != null) ? Convert.ToDateTime(values.Attributes.ToArray()[1].Value) : DateTime.MinValue })
-                .Where(value => value.DtInicio != DateTime.MinValue && value.DtFim != DateTime.MinValue).ToList();
+                .Where(value => value.Attributes != null)
+                .Select(values => new IterationInfo() { IdIteration = values.Id, DsNome = values.Name, DtInicio = (values.Attributes != null) ? Convert.ToDateTime(values.Attributes.ToArray()[0].Value) : DateTime.MinValue, DtFim = (values.Attributes != null) ? Convert.ToDateTime(values.Attributes.ToArray()[1].Value) : DateTime.MinValue }).ToList();
         }
 
         public IterationInfo GetCurrent()
         {
-            return List().Where(value => value.DtInicio <= DateTime.Now.Date && value.DtFim >= DateTime.Now.Date).FirstOrDefault();
+            return List().FirstOrDefault(value => value.DtInicio <= DateTime.Now.Date && value.DtFim >= DateTime.Now.Date);
         }
     }
 }
