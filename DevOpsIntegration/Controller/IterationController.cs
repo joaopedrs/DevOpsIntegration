@@ -11,43 +11,26 @@ namespace DevOpsIntegration.Controller
 {
     public class IterationController
     {
-        public string GetCurrent()
+        public List<IterationInfo> List()
         {
             Uri url = new Uri("https://dev.azure.com/selbettidev");
             VssCredentials token = new VssCredentials(new Microsoft.VisualStudio.Services.Common.VssBasicCredential(string.Empty, "xxx"));
-            var connection = new VssConnection(url, token);
+            VssConnection connection = new VssConnection(url, token);
 
-            var workItemTracking = connection.GetClient<WorkItemTrackingHttpClient>();
+            WorkItemTrackingHttpClient workItemTracking = connection.GetClient<WorkItemTrackingHttpClient>();
             Microsoft.TeamFoundation.Core.WebApi.ProjectHttpClient projClient = connection.GetClientAsync<Microsoft.TeamFoundation.Core.WebApi.ProjectHttpClient>().Result;
             string teamProjectName = "SHARE-4";
-            var iteration = workItemTracking.GetClassificationNodeAsync(teamProjectName, structureGroup: Microsoft.TeamFoundation.WorkItemTracking.WebApi.Models.TreeStructureGroup.Iterations, depth: 2).Result;
+            var iterationResult = workItemTracking.GetClassificationNodeAsync(teamProjectName, structureGroup: Microsoft.TeamFoundation.WorkItemTracking.WebApi.Models.TreeStructureGroup.Iterations, depth: 2).Result;
 
             List<IterationInfo> iterations = new List<IterationInfo>();
-            iterations = iteration.Children.Select(name => new IterationInfo() { IdIteration = name.Id, DsNome = name.Name, DtInicio = (name.Attributes != null) ? Convert.ToDateTime(name.Attributes.ToArray()[0].Value) : DateTime.MinValue, DtFim = (name.Attributes != null) ? Convert.ToDateTime(name.Attributes.ToArray()[1].Value) : DateTime.MinValue }).ToList();
-           
-            return GetIteration(iteration);
+            return iterations = iterationResult.Children
+                .Select(values => new IterationInfo() { IdIteration = values.Id, DsNome = values.Name, DtInicio = (values.Attributes != null) ? Convert.ToDateTime(values.Attributes.ToArray()[0].Value) : DateTime.MinValue, DtFim = (values.Attributes != null) ? Convert.ToDateTime(values.Attributes.ToArray()[1].Value) : DateTime.MinValue })
+                .Where(value => value.DtInicio != DateTime.MinValue && value.DtFim != DateTime.MinValue).ToList();
         }
 
-        private string GetIteration(Microsoft.TeamFoundation.WorkItemTracking.WebApi.Models.WorkItemClassificationNode currentIteration)
+        private IterationInfo Get()
         {
-            Console.WriteLine(currentIteration.Name);
-            if (currentIteration.Children != null)
-            {
-                foreach (var ci in currentIteration.Children)
-                {
-                    if (ci.Attributes != null)
-                    {
-                        //Busca current pela data de inicio, a fim de evitar que o PO não coloque a Sprint em Current
-                        if (Convert.ToDateTime(ci.Attributes.ToArray()[0].Value) <= DateTime.Now.Date && Convert.ToDateTime(ci.Attributes.ToArray()[1].Value) >= DateTime.Now.Date)
-                        {
-                            return ci.Name.ToString();
-                        }
-                    }
-                }
-                throw new Exception();
-            }
-            else
-                throw new Exception();
+            return List().Where(value => value.DtInicio <= DateTime.Now.Date && value.DtFim >= DateTime.Now.Date).FirstOrDefault();
         }
     }
 }
