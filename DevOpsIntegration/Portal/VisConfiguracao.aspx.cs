@@ -19,7 +19,7 @@ namespace DevOpsIntegration.Portal
             if (!IsPostBack)
             {
                 PreencherCampos();
-                //PreencherDDLSprint();
+                PreencherDDLSprint();
             }
         }
 
@@ -29,7 +29,7 @@ namespace DevOpsIntegration.Portal
             ConfiguracaoInfo info = new ConfiguracaoInfo();
             info.DsUrl = txtURL.Text;
             info.DsAccessToken = txtAccessToken.Text;
-            info.DsSprintAtiva = dllSprintAtiva.SelectedValue;
+            //info.DsSprintAtiva = dllSprintAtiva.SelectedValue;
             info.DsWorkItem = txtWorkItem.Text;
             info.StChkSprintAtiva = chkSprintAtiva.Checked;
 
@@ -44,7 +44,7 @@ namespace DevOpsIntegration.Portal
             {
                 txtURL.Text = info.DsUrl;
                 txtAccessToken.Text = info.DsAccessToken;
-                dllSprintAtiva.SelectedValue = info.DsSprintAtiva;
+                //dllSprintAtiva.SelectedValue = info.DsSprintAtiva;
                 txtWorkItem.Text = info.DsWorkItem;
                 chkSprintAtiva.Checked = info.StChkSprintAtiva;
             }
@@ -54,9 +54,11 @@ namespace DevOpsIntegration.Portal
 
         public void PreencherDDLSprint()
         {
-            //need adjust
             IterationBLL bll = new IterationBLL();
-            dllSprintAtiva.DataSource = bll.List();
+            dllSprintAtiva.DataSource = bll.List().Select(values => new { IdIteration = values.IdIteration, DsNome = values.DsNome });
+            dllSprintAtiva.DataValueField = "IdIteration";
+            dllSprintAtiva.DataTextField = "DsNome";
+            dllSprintAtiva.DataBind();
         }
 
         private void LimparCampos()
