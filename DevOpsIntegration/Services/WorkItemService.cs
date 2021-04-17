@@ -7,9 +7,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace DevOpsIntegration.Controller
+namespace DevOpsIntegration.Services
 {
-    public class WorkItemController
+    public class WorkItemService
     {
         public void Create(RegistrarInfo info)
         {

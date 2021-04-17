@@ -183,8 +183,6 @@
     <Compile Include="Classes\Info\ConfiguracaoInfo.cs" />
     <Compile Include="Classes\Info\IterationInfo.cs" />
     <Compile Include="Classes\Info\RegistrarInfo.cs" />
-    <Compile Include="Controller\IterationController.cs" />
-    <Compile Include="Controller\WorkItemController.cs" />
     <Compile Include="index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -207,6 +205,8 @@
       <DependentUpon>VisConfiguracao.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IterationService.cs" />
+    <Compile Include="Services\WorkItemService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Estilos\bootstrap\js\bootstrap.bundle.js.map" />

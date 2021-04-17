@@ -1,5 +1,5 @@
 ﻿using DevOpsIntegration.Classes.Info;
-using DevOpsIntegration.Controller;
+using DevOpsIntegration.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,13 +11,13 @@ namespace DevOpsIntegration.Classes.BLL
     {
         public List<IterationInfo> List()
         {
-            IterationController iteration = new IterationController();
+            IterationService iteration = new IterationService();
             return iteration.List();
         }
 
         public IterationInfo GetCurrent()
         {
-            IterationController iteration = new IterationController();
+            IterationService iteration = new IterationService();
             return iteration.GetCurrent();
         }
     }

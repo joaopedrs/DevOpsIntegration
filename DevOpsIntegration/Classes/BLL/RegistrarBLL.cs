@@ -1,5 +1,5 @@
 ﻿using DevOpsIntegration.Classes.Info;
-using DevOpsIntegration.Controller;
+using DevOpsIntegration.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,7 @@ namespace DevOpsIntegration.Classes.BLL
     {
         public void EnviarRegistro(RegistrarInfo info)
         {
-            WorkItemController workItem = new WorkItemController();
+            WorkItemService workItem = new WorkItemService();
             workItem.Create(info);
         }
     }

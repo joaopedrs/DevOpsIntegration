@@ -19,7 +19,6 @@ namespace DevOpsIntegration.Portal
             if (!IsPostBack)
             {
                 PreencherCampos();
-                PreencherDDLSprint();
             }
         }
 
@@ -29,22 +28,26 @@ namespace DevOpsIntegration.Portal
             ConfiguracaoInfo info = new ConfiguracaoInfo();
             info.DsUrl = txtURL.Text;
             info.DsAccessToken = txtAccessToken.Text;
-            //info.DsSprintAtiva = dllSprintAtiva.SelectedValue;
+            info.DsSprintAtiva = ddlSprintAtiva.SelectedValue;
             info.DsWorkItem = txtWorkItem.Text;
             info.StChkSprintAtiva = chkSprintAtiva.Checked;
 
             bll.Salvar(info);
+            PreencherCampos();
         }
 
         private void PreencherCampos()
         {
+            PreencherDDLSprint();
             ConfiguracaoBLL bll = new ConfiguracaoBLL();
             ConfiguracaoInfo info = bll.Carregar();
+            IterationBLL bllIteration = new IterationBLL();
+
             if (info != null)
             {
                 txtURL.Text = info.DsUrl;
                 txtAccessToken.Text = info.DsAccessToken;
-                //dllSprintAtiva.SelectedValue = info.DsSprintAtiva;
+                ddlSprintAtiva.SelectedValue = info.StChkSprintAtiva == true ? bllIteration.GetCurrent().IdIteration.ToString() : info.DsSprintAtiva;
                 txtWorkItem.Text = info.DsWorkItem;
                 chkSprintAtiva.Checked = info.StChkSprintAtiva;
             }
@@ -55,17 +58,17 @@ namespace DevOpsIntegration.Portal
         public void PreencherDDLSprint()
         {
             IterationBLL bll = new IterationBLL();
-            dllSprintAtiva.DataSource = bll.List().Select(values => new { IdIteration = values.IdIteration, DsNome = values.DsNome });
-            dllSprintAtiva.DataValueField = "IdIteration";
-            dllSprintAtiva.DataTextField = "DsNome";
-            dllSprintAtiva.DataBind();
+            ddlSprintAtiva.DataSource = bll.List().Select(values => new { values.IdIteration, values.DsNome });
+            ddlSprintAtiva.DataValueField = "IdIteration";
+            ddlSprintAtiva.DataTextField = "DsNome";
+            ddlSprintAtiva.DataBind();
         }
 
         private void LimparCampos()
         {
             txtURL.Text = string.Empty;
             txtAccessToken.Text = string.Empty;
-            dllSprintAtiva.SelectedValue = string.Empty;
+            ddlSprintAtiva.SelectedValue = string.Empty;
             txtWorkItem.Text = string.Empty;
             chkSprintAtiva.Checked = true;
         }

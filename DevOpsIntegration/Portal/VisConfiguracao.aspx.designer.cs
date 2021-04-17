@@ -69,13 +69,13 @@ namespace DevOpsIntegration.Portal
         protected global::System.Web.UI.WebControls.Label lbSprintAtiva;
 
         /// <summary>
-        /// Controle dllSprintAtiva.
+        /// Controle ddlSprintAtiva.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList dllSprintAtiva;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSprintAtiva;
 
         /// <summary>
         /// Controle chkSprintAtiva.

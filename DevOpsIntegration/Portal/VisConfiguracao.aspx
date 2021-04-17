@@ -22,12 +22,12 @@
                                 <asp:Label runat="server" ID="lbURL" AssociatedControlID="txtURL">DevOps URL:</asp:Label>
                                 <asp:TextBox runat="server" ID="txtURL" CssClass="form-control" TextMode="Url"></asp:TextBox>
                                 <asp:Label runat="server" ID="lbAccessToken" AssociatedControlID="txtAccessToken">Access Token:</asp:Label>
-                                <asp:TextBox runat="server" ID="txtAccessToken" CssClass="form-control" TextMode="Password"></asp:TextBox>
+                                <asp:TextBox runat="server" ID="txtAccessToken" CssClass="form-control" ></asp:TextBox>
                             </div>
                             <div class="tab-pane" id="sprint" role="tabpanel">
                                 <div>
-                                    <asp:Label runat="server" ID="lbSprintAtiva" AssociatedControlID="dllSprintAtiva">Sprint Ativa:</asp:Label>
-                                    <asp:DropDownList runat="server" CssClass="form-select" ID="dllSprintAtiva">
+                                    <asp:Label runat="server" ID="lbSprintAtiva" AssociatedControlID="ddlSprintAtiva">Sprint Ativa:</asp:Label>
+                                    <asp:DropDownList runat="server" CssClass="form-select" ID="ddlSprintAtiva">
                                     </asp:DropDownList>
 
                                     <asp:CheckBox runat="server" CssClass="form-check-label" ID="chkSprintAtiva" Checked="true" />
