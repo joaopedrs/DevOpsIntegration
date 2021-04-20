@@ -2,5 +2,12 @@
 }
 
 .divForm {
-    padding: 10px 0px 0px 0px;
+	padding: 10px 0px 0px 0px;
 }
+
+/*.messagealert {
+	width: 100%;
+	z-index: 100000;
+	font-size: 15px;
+}
+*/
