@@ -43,5 +43,22 @@
     </nav>
     <asp:ContentPlaceHolder ID="body" runat="server">
     </asp:ContentPlaceHolder>
+
+    <footer id="footer">
+        <style type="text/css">
+        .messagealert {
+            border:1px solid black;
+/*
+            width: 100%;
+            position: fixed;
+             top:0px;
+            z-index: 100000;
+            padding: 0;
+            font-size: 15px;*/
+        }
+    </style>
+        <div class="messagealert" id="alert_container">teste
+        </div>
+    </footer>
 </body>
 </html>

@@ -1,5 +1,6 @@
 ﻿using DevOpsIntegration.Classes.BLL;
 using DevOpsIntegration.Classes.Info;
+using Microsoft.TeamFoundation.Test.WebApi;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,7 +14,7 @@ namespace DevOpsIntegration.Portal
 {
     public partial class VisConfiguracao : System.Web.UI.Page
     {
-
+        public enum MessageType { Success, Error, Info, Warning };
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -22,8 +23,15 @@ namespace DevOpsIntegration.Portal
             }
         }
 
+        protected void ShowMessage(string Message, MessageType type)
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "ShowMessage('" + Message + "','" + type + "');", true);
+        }
+
         protected void btnSalvar_Click(object sender, EventArgs e)
         {
+
+            ShowMessage("TestexD", MessageType.Error);
             ConfiguracaoBLL bll = new ConfiguracaoBLL();
             ConfiguracaoInfo info = new ConfiguracaoInfo();
             info.DsUrl = txtURL.Text;
@@ -38,21 +46,28 @@ namespace DevOpsIntegration.Portal
 
         private void PreencherCampos()
         {
-            PreencherDDLSprint();
-            ConfiguracaoBLL bll = new ConfiguracaoBLL();
-            ConfiguracaoInfo info = bll.Carregar();
-            IterationBLL bllIteration = new IterationBLL();
-
-            if (info != null)
+            try
             {
-                txtURL.Text = info.DsUrl;
-                txtAccessToken.Text = info.DsAccessToken;
-                ddlSprintAtiva.SelectedValue = info.StChkSprintAtiva == true ? bllIteration.GetCurrent().IdIteration.ToString() : info.DsSprintAtiva;
-                txtWorkItem.Text = info.DsWorkItem;
-                chkSprintAtiva.Checked = info.StChkSprintAtiva;
+                PreencherDDLSprint();
+                ConfiguracaoBLL bll = new ConfiguracaoBLL();
+                ConfiguracaoInfo info = bll.Carregar();
+                IterationBLL bllIteration = new IterationBLL();
+
+                if (info != null)
+                {
+                    txtURL.Text = info.DsUrl;
+                    txtAccessToken.Text = info.DsAccessToken;
+                    ddlSprintAtiva.SelectedValue = info.StChkSprintAtiva == true ? bllIteration.GetCurrent().IdIteration.ToString() : info.DsSprintAtiva;
+                    txtWorkItem.Text = info.DsWorkItem;
+                    chkSprintAtiva.Checked = info.StChkSprintAtiva;
+                }
+                else
+                    LimparCampos();
             }
-            else
-                LimparCampos();
+            catch(Exception ex)
+            {
+                ShowMessage(ex.Message, MessageType.Error);
+            }
         }
 
         public void PreencherDDLSprint()
