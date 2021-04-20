@@ -1,6 +1,6 @@
 ﻿using DevOpsIntegration.Classes.BLL;
 using DevOpsIntegration.Classes.Info;
-using Microsoft.TeamFoundation.Test.WebApi;
+using DevOpsIntegration.Enum;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,7 +14,6 @@ namespace DevOpsIntegration.Portal
 {
     public partial class VisConfiguracao : System.Web.UI.Page
     {
-        public enum MessageType { Success, Error, Info, Warning };
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -23,25 +22,31 @@ namespace DevOpsIntegration.Portal
             }
         }
 
-        protected void ShowMessage(string Message, MessageType type)
+        protected void ShowMessage(string Message, MessageTypeEnum type)
         {
             ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "ShowMessage('" + Message + "','" + type + "');", true);
         }
 
         protected void btnSalvar_Click(object sender, EventArgs e)
         {
+            try
+            {
+                ConfiguracaoBLL bll = new ConfiguracaoBLL();
+                ConfiguracaoInfo info = new ConfiguracaoInfo();
+                info.DsUrl = txtURL.Text;
+                info.DsAccessToken = txtAccessToken.Text;
+                info.DsSprintAtiva = ddlSprintAtiva.SelectedValue;
+                info.DsWorkItem = txtWorkItem.Text;
+                info.StChkSprintAtiva = chkSprintAtiva.Checked;
 
-            ShowMessage("TestexD", MessageType.Error);
-            ConfiguracaoBLL bll = new ConfiguracaoBLL();
-            ConfiguracaoInfo info = new ConfiguracaoInfo();
-            info.DsUrl = txtURL.Text;
-            info.DsAccessToken = txtAccessToken.Text;
-            info.DsSprintAtiva = ddlSprintAtiva.SelectedValue;
-            info.DsWorkItem = txtWorkItem.Text;
-            info.StChkSprintAtiva = chkSprintAtiva.Checked;
-
-            bll.Salvar(info);
-            PreencherCampos();
+                bll.Salvar(info);
+                PreencherCampos();
+                ShowMessage("Configuração Salva", MessageTypeEnum.Sucesso);
+            }
+            catch(Exception ex)
+            {
+                ShowMessage(ex.Message, MessageTypeEnum.Erro);
+            }
         }
 
         private void PreencherCampos()
@@ -66,7 +71,7 @@ namespace DevOpsIntegration.Portal
             }
             catch(Exception ex)
             {
-                ShowMessage(ex.Message, MessageType.Error);
+                ShowMessage(ex.Message, MessageTypeEnum.Erro);
             }
         }
 

@@ -14,13 +14,13 @@ $(function () {
 function ShowMessage(message, messagetype) {
     var cssclass;
     switch (messagetype) {
-        case 'Success':
+        case 'Sucesso':
             cssclass = 'alert-success'
             break;
-        case 'Error':
+        case 'Erro':
             cssclass = 'alert-danger'
             break;
-        case 'Warning':
+        case 'Alerta':
             cssclass = 'alert-warning'
             break;
         default:
