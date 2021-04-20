@@ -169,30 +169,27 @@
     <Content Include="Estilos\bootstrap\js\bootstrap.js" />
     <Content Include="Estilos\bootstrap\js\bootstrap.min.js" />
     <Content Include="Estilos\Icones\gear.png" />
-    <Content Include="Estilos\style.css" />
+    <Content Include="Estilos\Css\style.css" />
+    <Content Include="Estilos\JQuery\jquery.min.js" />
+    <Content Include="Estilos\JQuery\script.js" />
     <Content Include="index.aspx" />
-    <Content Include="Portal\EsqLateral.aspx" />
     <Content Include="Portal\VisConfiguracao.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\BLL\ConfiguracaoBLL.cs" />
+    <Compile Include="Classes\BLL\IterationBLL.cs" />
     <Compile Include="Classes\BLL\RegistrarBLL.cs" />
+    <Compile Include="Classes\Info\ConfiguracaoInfo.cs" />
+    <Compile Include="Classes\Info\IterationInfo.cs" />
     <Compile Include="Classes\Info\RegistrarInfo.cs" />
-    <Compile Include="Controller\IterationController.cs" />
-    <Compile Include="Controller\WorkItemController.cs" />
+    <Compile Include="Enum\MessageTypeEnum.cs" />
     <Compile Include="index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Portal\EsqLateral.aspx.cs">
-      <DependentUpon>EsqLateral.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Portal\EsqLateral.aspx.designer.cs">
-      <DependentUpon>EsqLateral.aspx</DependentUpon>
     </Compile>
     <Compile Include="Portal\mpSuperior.Master.cs">
       <DependentUpon>mpSuperior.Master</DependentUpon>
@@ -209,6 +206,8 @@
       <DependentUpon>VisConfiguracao.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IterationService.cs" />
+    <Compile Include="Services\WorkItemService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Estilos\bootstrap\js\bootstrap.bundle.js.map" />

@@ -1,0 +1,15 @@
+﻿body {
+}
+
+.divForm {
+	padding: 10px 0px 0px 0px;
+}
+
+.messagealert {
+	width: 20%;
+	z-index: 10000000;
+	font-size: 15px;
+	position: absolute;
+	left: auto;
+	right: 0;
+}
