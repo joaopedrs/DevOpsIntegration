@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Portal/mpSuperior.Master" AutoEventWireup="true" CodeBehind="index.aspx.cs" Inherits="DevOpsIntegration.index" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 
@@ -45,9 +46,13 @@
                 </div>
                 <div class="container">
                     <div class="row">
-                        <div class="col-sm">
-                            <asp:Button runat="server" ID="btnEnviar" OnClick="btnEnviar_Click" Text="Enviar" CssClass="btn btn-primary w-50 p-1 float-md-end h-70 d-inline-block" />
-                            <asp:Button runat="server" ID="btnLimpar" OnClick="btnLimpar_Click" Text="Limpar" CssClass="btn btn-secondary w-50 p-1 float-md-end h-70 d-inline-block" />
+                        <div class="col-7">
+                             <asp:CheckBox runat="server" CssClass="form-check-label" ID="chkBug" Checked="false" />
+                            <asp:Label runat="server" ID="lbchkBug" AssociatedControlID="chkBug">Gerou Bug</asp:Label>
+                        </div>
+                        <div class="col-5">
+                            <asp:Button runat="server" ID="btnEnviar" OnClick="btnEnviar_Click" Text="Enviar" CssClass="btn btn-primary w-25 p-1 float-md-end h-70 d-inline-block mt-2" />
+                            <asp:Button runat="server" ID="btnLimpar" OnClick="btnLimpar_Click" Text="Limpar" CssClass="btn btn-secondary w-25 p-1 float-md-end h-70 d-inline-block me-3 mt-2" />
                         </div>
                     </div>
                 </div>
