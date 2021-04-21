@@ -26,14 +26,14 @@ namespace DevOpsIntegration.Services
                 {
                     Path = "/fields/System.Title",
                     Operation = Microsoft.VisualStudio.Services.WebApi.Patch.Operation.Add,
-                    Value = info.DsTipoAcesso + " | " + info.DsAnalista + " | " + info.DsCliente + " | " + info.DsPalavraChave
+                    Value = info.IdTipoAcesso + " | " + info.DsAnalista + " | " + info.DsCliente + " | " + info.DsPalavraChave
                 });
             document.Add(
                 new Microsoft.VisualStudio.Services.WebApi.Patch.Json.JsonPatchOperation()
                 {
                     Path = "/fields/System.IterationPath",
                     Operation = Microsoft.VisualStudio.Services.WebApi.Patch.Operation.Add,
-                    Value = string.Format("{0}\\{1}", teamProjectName, "Sprint 36")
+                    Value = string.Format("{0}\\{1}", teamProjectName, "Sprint 38")
                 });
             document.Add(new Microsoft.VisualStudio.Services.WebApi.Patch.Json.JsonPatchOperation()
             {

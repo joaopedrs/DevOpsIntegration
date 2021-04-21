@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DevOpsIntegration.Classes.BLL;
+using DevOpsIntegration.Classes.Info;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
@@ -11,18 +13,13 @@ namespace DevOpsIntegration.Connection
     {
         public SqlConnection Connect()
         {
-            Configuration configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            string connetionString = configuration.AppSettings.Settings["connectionString"].Value;
-            SqlConnection cnn = new SqlConnection(connetionString);
-            return cnn;
-        }
 
-        public SqlConnection TestConnect(string connection)
-        {
-            Configuration configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            string connetionString = connection;
-            SqlConnection cnn = new SqlConnection(connetionString);
-            return cnn;
+            ConfiguracaoBLL bll = new ConfiguracaoBLL();
+            ConfiguracaoInfo info = bll.Carregar();
+
+            string connetionString = string.Format(@"Data Source={0};Initial Catalog={1};User ID={2};Password={3};", info.DsServidor, info.DsBancoDados, info.DsUsuario, info.DsSenha);
+            using (SqlConnection cnn = new SqlConnection(connetionString))
+                return cnn;
         }
     }
 }

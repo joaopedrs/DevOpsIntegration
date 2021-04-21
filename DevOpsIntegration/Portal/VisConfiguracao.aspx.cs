@@ -1,8 +1,10 @@
 ﻿using DevOpsIntegration.Classes.BLL;
 using DevOpsIntegration.Classes.Info;
+using DevOpsIntegration.Connection;
 using DevOpsIntegration.Enum;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -38,14 +40,29 @@ namespace DevOpsIntegration.Portal
                 info.DsSprintAtiva = ddlSprintAtiva.SelectedValue;
                 info.DsWorkItem = txtWorkItem.Text;
                 info.StChkSprintAtiva = chkSprintAtiva.Checked;
+                info.DsServidor = txtServidor.Text;
+                info.DsBancoDados = txtBancoDados.Text;
+                info.DsUsuario = txtUsuario.Text;
+                info.DsSenha = txtSenha.Text;
 
                 bll.Salvar(info);
                 PreencherCampos();
-                ShowMessage("Configuração Salva", MessageTypeEnum.Sucesso);
+                TestarConexao();
+                ShowMessage("Configuração Salva com Sucesso!", MessageTypeEnum.Sucesso);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ShowMessage(ex.Message, MessageTypeEnum.Erro);
+            }
+        }
+
+        private void TestarConexao()
+        {
+            DataBaseConnect connect = new DataBaseConnect();
+            using (SqlConnection cnn = connect.Connect())
+            {
+                cnn.Open();
+                cnn.Close();
             }
         }
 
@@ -65,11 +82,15 @@ namespace DevOpsIntegration.Portal
                     ddlSprintAtiva.SelectedValue = info.StChkSprintAtiva == true ? bllIteration.GetCurrent().IdIteration.ToString() : info.DsSprintAtiva;
                     txtWorkItem.Text = info.DsWorkItem;
                     chkSprintAtiva.Checked = info.StChkSprintAtiva;
+                    txtServidor.Text = info.DsServidor;
+                    txtBancoDados.Text = info.DsBancoDados;
+                    txtUsuario.Text = info.DsUsuario;
+                    txtSenha.Text = info.DsSenha;
                 }
                 else
                     LimparCampos();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ShowMessage(ex.Message, MessageTypeEnum.Erro);
             }

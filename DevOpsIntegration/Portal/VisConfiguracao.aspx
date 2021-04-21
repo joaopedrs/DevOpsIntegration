@@ -14,6 +14,7 @@
                                 <div class="list-group" id="minhaLista" role="tablist">
                                     <a class="list-group-item list-group-item-action active" data-toggle="list" href="#autorizacao" role="tab">Autorização</a>
                                     <a class="list-group-item list-group-item-action" data-toggle="list" href="#sprint" role="tab">Sprint</a>
+                                    <a class="list-group-item list-group-item-action" data-toggle="list" href="#bancodados" role="tab">Banco de dados</a>
                                 </div>
                             </div>
                         </div>
@@ -39,6 +40,16 @@
                                         <img src="../Estilos/Icones/info.png" width="15" height="15" data-toggle="tooltip" data-placement="top" title="(Descrição) WorkItem onde serão adicionado as tasks." />
                                         <asp:TextBox runat="server" ID="txtWorkItem" CssClass="form-control"></asp:TextBox>
                                     </div>
+                                </div>
+                                <div class="tab-pane" id="bancodados" role="tabpanel">
+                                    <asp:Label runat="server" ID="lbServidor" AssociatedControlID="txtServidor">Servidor:</asp:Label>
+                                    <asp:TextBox runat="server" ID="txtServidor" CssClass="form-control"></asp:TextBox>
+                                    <asp:Label runat="server" ID="lbBancoDados" AssociatedControlID="txtBancoDados">Banco de Dados:</asp:Label>
+                                    <asp:TextBox runat="server" ID="txtBancoDados" CssClass="form-control"></asp:TextBox>
+                                    <asp:Label runat="server" ID="lbUsuario" AssociatedControlID="txtUsuario">Usuário:</asp:Label>
+                                    <asp:TextBox runat="server" ID="txtUsuario" CssClass="form-control"></asp:TextBox>
+                                    <asp:Label runat="server" ID="lbSenha" AssociatedControlID="txtSenha">Senha:</asp:Label>
+                                    <asp:TextBox runat="server" ID="txtSenha" CssClass="form-control"></asp:TextBox>
                                 </div>
                             </div>
                             <div class="divForm">
