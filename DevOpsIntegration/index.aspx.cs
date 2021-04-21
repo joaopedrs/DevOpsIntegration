@@ -21,13 +21,13 @@ namespace DevOpsIntegration
             RegistrarInfo info = new RegistrarInfo();
             RegistrarBLL registrar = new RegistrarBLL();
             info.DsCliente = txtCliente.Text;
-            info.DsTipoAcesso = ddlTipoAcesso.SelectedValue;
+            info.IdTipoAcesso = ddlTipoAcesso.SelectedValue;
             info.DsAnalista = ddlAnalista.SelectedValue;
             info.DsMotivo = txtMotivo.Text;
             info.DsAcao = txtAcao.Text;
             info.DsConclusao = txtConclusao.Text;
             info.DsPalavraChave = txtPalavraChave.Text;
-            registrar.EnviarRegistro(info);
+            registrar.CriarWorkItem(info);
         }
 
         protected void btnLimpar_Click(object sender, EventArgs e)

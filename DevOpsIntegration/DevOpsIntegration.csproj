@@ -183,6 +183,7 @@
     <Compile Include="Classes\Info\ConfiguracaoInfo.cs" />
     <Compile Include="Classes\Info\IterationInfo.cs" />
     <Compile Include="Classes\Info\RegistrarInfo.cs" />
+    <Compile Include="Connection\DataBaseConnect.cs" />
     <Compile Include="Enum\MessageTypeEnum.cs" />
     <Compile Include="index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
