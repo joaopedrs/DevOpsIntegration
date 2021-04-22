@@ -1,6 +1,5 @@
 ﻿using DevOpsIntegration.Classes.BLL;
 using DevOpsIntegration.Classes.Info;
-using DevOpsIntegration.Connection;
 using DevOpsIntegration.Enum;
 using System;
 using System.Collections.Generic;
@@ -40,10 +39,7 @@ namespace DevOpsIntegration.Portal
                 info.DsSprintAtiva = ddlSprintAtiva.SelectedValue;
                 info.DsWorkItem = txtWorkItem.Text;
                 info.StChkSprintAtiva = chkSprintAtiva.Checked;
-                info.DsServidor = txtServidor.Text;
-                info.DsBancoDados = txtBancoDados.Text;
-                info.DsUsuario = txtUsuario.Text;
-                info.DsSenha = txtSenha.Text;
+                info.DsConnectionString = string.Format(@"Data Source={0};Initial Catalog={1};User ID={2};Password={3};", txtServidor.Text, txtBancoDados.Text, txtUsuario.Text, txtSenha.Text);
 
                 bll.Salvar(info);
                 PreencherCampos();
@@ -58,8 +54,8 @@ namespace DevOpsIntegration.Portal
 
         private void TestarConexao()
         {
-            DataBaseConnect connectionString = new DataBaseConnect();
-            using (SqlConnection cnn = new SqlConnection(connectionString.CreateConnectionString()))
+            ConfiguracaoBLL bll = new ConfiguracaoBLL();
+            using (SqlConnection cnn = new SqlConnection(bll.Carregar().DsConnectionString))
             {
                 cnn.Open();
                 cnn.Close();
@@ -77,15 +73,16 @@ namespace DevOpsIntegration.Portal
 
                 if (info != null)
                 {
+                    SqlConnectionStringBuilder decoder = new SqlConnectionStringBuilder(info.DsConnectionString);
                     txtURL.Text = info.DsUrl;
                     txtAccessToken.Text = info.DsAccessToken;
                     ddlSprintAtiva.SelectedValue = info.StChkSprintAtiva == true ? bllIteration.GetCurrent().IdIteration.ToString() : info.DsSprintAtiva;
                     txtWorkItem.Text = info.DsWorkItem;
                     chkSprintAtiva.Checked = info.StChkSprintAtiva;
-                    txtServidor.Text = info.DsServidor;
-                    txtBancoDados.Text = info.DsBancoDados;
-                    txtUsuario.Text = info.DsUsuario;
-                    txtSenha.Text = info.DsSenha;
+                    txtServidor.Text = decoder.DataSource;
+                    txtBancoDados.Text = decoder.InitialCatalog;
+                    txtUsuario.Text = decoder.UserID;
+                    txtSenha.Text = decoder.Password;
                 }
                 else
                     LimparCampos();

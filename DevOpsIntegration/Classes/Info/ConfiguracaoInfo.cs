@@ -12,10 +12,6 @@ namespace DevOpsIntegration.Classes.Info
         public String DsSprintAtiva { get; set; }
         public String DsWorkItem { get; set; }
         public bool StChkSprintAtiva { get; set; }
-        public String DsServidor { get; set; }
-        public String DsBancoDados { get; set; }
-        public String DsUsuario { get; set; }
-        public String DsSenha { get; set; }
-
+        public String DsConnectionString { get; set; }
     }
 }

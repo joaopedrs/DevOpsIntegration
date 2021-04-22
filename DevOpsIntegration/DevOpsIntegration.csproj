@@ -180,10 +180,10 @@
     <Compile Include="Classes\BLL\ConfiguracaoBLL.cs" />
     <Compile Include="Classes\BLL\IterationBLL.cs" />
     <Compile Include="Classes\BLL\RegistrarBLL.cs" />
+    <Compile Include="Classes\DAL\RegistrarDAL.cs" />
     <Compile Include="Classes\Info\ConfiguracaoInfo.cs" />
     <Compile Include="Classes\Info\IterationInfo.cs" />
     <Compile Include="Classes\Info\RegistrarInfo.cs" />
-    <Compile Include="Connection\DataBaseConnect.cs" />
     <Compile Include="Enum\MessageTypeEnum.cs" />
     <Compile Include="index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
