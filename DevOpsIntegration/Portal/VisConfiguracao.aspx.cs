@@ -58,8 +58,8 @@ namespace DevOpsIntegration.Portal
 
         private void TestarConexao()
         {
-            DataBaseConnect connect = new DataBaseConnect();
-            using (SqlConnection cnn = connect.Connect())
+            DataBaseConnect connectionString = new DataBaseConnect();
+            using (SqlConnection cnn = new SqlConnection(connectionString.CreateConnectionString()))
             {
                 cnn.Open();
                 cnn.Close();

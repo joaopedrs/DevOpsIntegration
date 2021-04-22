@@ -1,4 +1,5 @@
-﻿using DevOpsIntegration.Classes.Info;
+﻿using DevOpsIntegration.Classes.BLL;
+using DevOpsIntegration.Classes.Info;
 using Microsoft.TeamFoundation.WorkItemTracking.WebApi;
 using Microsoft.VisualStudio.Services.Common;
 using Microsoft.VisualStudio.Services.WebApi;
@@ -13,8 +14,11 @@ namespace DevOpsIntegration.Services
     {
         public void Create(RegistrarInfo info)
         {
-            Uri url = new Uri("https://dev.azure.com/selbettidev");
-            VssCredentials token = new VssCredentials(new Microsoft.VisualStudio.Services.Common.VssBasicCredential(string.Empty, "xxx"));
+            ConfiguracaoBLL bll = new ConfiguracaoBLL();
+            ConfiguracaoInfo infoConf = bll.Carregar();
+
+            Uri url = new Uri(infoConf.DsUrl);
+            VssCredentials token = new VssCredentials(new Microsoft.VisualStudio.Services.Common.VssBasicCredential(string.Empty, infoConf.DsAccessToken));
             var connection = new VssConnection(url, token);
 
             var workitemClient = connection.GetClient<WorkItemTrackingHttpClient>();
@@ -33,7 +37,7 @@ namespace DevOpsIntegration.Services
                 {
                     Path = "/fields/System.IterationPath",
                     Operation = Microsoft.VisualStudio.Services.WebApi.Patch.Operation.Add,
-                    Value = string.Format("{0}\\{1}", teamProjectName, "Sprint 38")
+                    Value = string.Format("{0}\\{1}", teamProjectName, infoConf.DsSprintAtiva)
                 });
             document.Add(new Microsoft.VisualStudio.Services.WebApi.Patch.Json.JsonPatchOperation()
             {
@@ -49,7 +53,7 @@ namespace DevOpsIntegration.Services
                     Value = new
                     {
                         rel = "System.LinkTypes.Hierarchy-Reverse",
-                        url = "https://dev.azure.com/selbettidev/0d39a57d-0795-4ac7-9d84-4b05f068c3d7/_apis/wit/workItems/9435"
+                        url = "https://dev.azure.com/selbettidev/0d39a57d-0795-4ac7-9d84-4b05f068c3d7/_apis/wit/workItems/12377"
                     }
                 });
             document.Add(

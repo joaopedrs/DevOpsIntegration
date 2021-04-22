@@ -11,15 +11,12 @@ namespace DevOpsIntegration.Connection
 {
     public class DataBaseConnect
     {
-        public SqlConnection Connect()
+        public string CreateConnectionString()
         {
-
             ConfiguracaoBLL bll = new ConfiguracaoBLL();
             ConfiguracaoInfo info = bll.Carregar();
 
-            string connetionString = string.Format(@"Data Source={0};Initial Catalog={1};User ID={2};Password={3};", info.DsServidor, info.DsBancoDados, info.DsUsuario, info.DsSenha);
-            using (SqlConnection cnn = new SqlConnection(connetionString))
-                return cnn;
+            return string.Format(@"Data Source={0};Initial Catalog={1};User ID={2};Password={3};", info.DsServidor, info.DsBancoDados, info.DsUsuario, info.DsSenha);
         }
     }
 }
