@@ -13,7 +13,7 @@ namespace DevOpsIntegration
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            chkIsBug.InputAttributes["class"] = "form-check-input";
         }
 
         protected void btnEnviar_Click(object sender, EventArgs e)

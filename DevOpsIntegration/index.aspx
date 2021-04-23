@@ -47,15 +47,53 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-7">
-                             <asp:CheckBox runat="server" CssClass="form-check-label" ID="chkBug" Checked="false" />
-                            <asp:Label runat="server" ID="lbchkBug" AssociatedControlID="chkBug">Gerou Bug</asp:Label>
+                            <%--                            <asp:CheckBox runat="server" CssClass="form-check-label" ID="chkBug" Checked="false" />
+                            <asp:Label runat="server" ID="lbchkBug" AssociatedControlID="chkBug">Gerou Bug</asp:Label>--%>
                         </div>
                         <div class="col-5">
-                            <asp:Button runat="server" ID="btnEnviar" OnClick="btnEnviar_Click" Text="Enviar" CssClass="btn btn-primary w-25 p-1 float-md-end h-70 d-inline-block mt-2" />
+                            <button type="button" class="btn btn-primary w-25 p-1 float-md-end h-70 d-inline-block mt-2" data-bs-toggle="modal" data-bs-target="#ModalEnviar">Enviar</button>
+                            <%--<asp:Button runat="server" ID="btnEnviar" OnClick="btnEnviar_Click" Text="Enviar" CssClass="btn btn-primary w-25 p-1 float-md-end h-70 d-inline-block mt-2" />--%>
                             <asp:Button runat="server" ID="btnLimpar" OnClick="btnLimpar_Click" Text="Limpar" CssClass="btn btn-secondary w-25 p-1 float-md-end h-70 d-inline-block me-3 mt-2" />
                         </div>
                     </div>
                 </div>
+                <div class="modal fade" id="ModalEnviar" tabindex="-1" aria-labelledby="ModalEnviar" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="lbTitleModal">Registrar Atendimento</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <asp:Label runat="server" ID="lbTimeInicial" CssClass="w-75" AssociatedControlID="txtTimeInicial">Horário Inicial:</asp:Label>
+                                            <asp:TextBox runat="server" ID="txtTimeInicial" CssClass=" form-control w-75" TextMode="Time"></asp:TextBox>
+                                        </div>
+                                        <div class="col-6">
+                                            <asp:Label runat="server" ID="lbTimeFinal" CssClass="w-75 float-md-end" AssociatedControlID="txtTimeFinal">Horário Final:</asp:Label>
+                                            <asp:TextBox runat="server" ID="txtTimeFinal" CssClass="form-control w-75 float-md-end" TextMode="Time"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col">
+                                            <asp:CheckBox runat="server" ID="chkIsBug" Checked="false" />
+                                            <asp:Label runat="server" CssClass="form-check-label" ID="lbIsBug" AssociatedControlID="chkIsBug">BUG</asp:Label>
+                                        </div>
+                                        <div class="col">
+                                            <button type="button" class="btn btn-primary float-md-end ms-2">Registrar</button>
+                                            <button type="button" class="btn btn-secondary float-md-end" data-bs-dismiss="modal">Cancelar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
             </form>
         </div>
     </body>
