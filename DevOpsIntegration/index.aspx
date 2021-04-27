@@ -47,12 +47,9 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-7">
-                            <%--                            <asp:CheckBox runat="server" CssClass="form-check-label" ID="chkBug" Checked="false" />
-                            <asp:Label runat="server" ID="lbchkBug" AssociatedControlID="chkBug">Gerou Bug</asp:Label>--%>
                         </div>
                         <div class="col-5">
-                            <button type="button" class="btn btn-primary w-25 p-1 float-md-end h-70 d-inline-block mt-2" data-bs-toggle="modal" data-bs-target="#ModalEnviar">Enviar</button>
-                            <%--<asp:Button runat="server" ID="btnEnviar" OnClick="btnEnviar_Click" Text="Enviar" CssClass="btn btn-primary w-25 p-1 float-md-end h-70 d-inline-block mt-2" />--%>
+                            <button type="button" class="btn btn-primary w-25 p-1 float-md-end h-70 d-inline-block mt-2" data-bs-toggle="modal" data-bs-target="#ModalEnviar">Registrar</button>
                             <asp:Button runat="server" ID="btnLimpar" OnClick="btnLimpar_Click" Text="Limpar" CssClass="btn btn-secondary w-25 p-1 float-md-end h-70 d-inline-block me-3 mt-2" />
                         </div>
                     </div>
@@ -86,7 +83,7 @@
                                             <asp:Label runat="server" CssClass="form-check-label" ID="lbIsBug" AssociatedControlID="chkIsBug">BUG</asp:Label>
                                         </div>
                                         <div class="col">
-                                            <button type="button" class="btn btn-primary float-md-end ms-2">Registrar</button>
+                                            <asp:Button runat="server" ID="btnRegistrar" OnClick="btnRegistrar_Click" Text="Registrar" CssClass="btn btn-primary float-md-end ms-2" />
                                             <button type="button" class="btn btn-secondary float-md-end" data-bs-dismiss="modal">Cancelar</button>
                                         </div>
                                     </div>
@@ -94,6 +91,7 @@
                             </div>
                         </div>
                     </div>
+                </div>
             </form>
         </div>
     </body>

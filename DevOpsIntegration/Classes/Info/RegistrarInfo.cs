@@ -7,6 +7,7 @@ namespace DevOpsIntegration.Classes.Info
 {
     public class RegistrarInfo
     {
+        public int IdRegistro { get; set; }
         public String DsCliente { get; set; }
         public String IdTipoAcesso { get; set; }
         public String DsAnalista { get; set; }
@@ -16,7 +17,7 @@ namespace DevOpsIntegration.Classes.Info
         public String DsConclusao { get; set; }
         public String DsInfoAdicional { get; set; }
         public bool IsBug { get; set; }
-        public DateTime DtInicial { get; set; }
-        public DateTime DtFinal { get; set; }
+        public TimeSpan DtInicial { get; set; }
+        public TimeSpan DtFinal { get; set; }
     }
 }

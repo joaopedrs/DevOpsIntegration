@@ -18,6 +18,16 @@ namespace DevOpsIntegration
 
         protected void btnEnviar_Click(object sender, EventArgs e)
         {
+
+        }
+
+        protected void btnLimpar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnRegistrar_Click(object sender, EventArgs e)
+        {
             RegistrarInfo info = new RegistrarInfo();
             RegistrarBLL registrar = new RegistrarBLL();
             info.DsCliente = txtCliente.Text;
@@ -27,12 +37,9 @@ namespace DevOpsIntegration
             info.DsAcao = txtAcao.Text;
             info.DsConclusao = txtConclusao.Text;
             info.DsPalavraChave = txtPalavraChave.Text;
+            info.DtInicial = TimeSpan.Parse(txtTimeInicial.Text);
+            info.DtFinal = TimeSpan.Parse(txtTimeFinal.Text);
             registrar.CriarWorkItem(info);
-        }
-
-        protected void btnLimpar_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

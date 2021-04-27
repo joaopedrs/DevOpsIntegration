@@ -177,10 +177,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\BLL\AnalistaBLL.cs" />
     <Compile Include="Classes\BLL\ConfiguracaoBLL.cs" />
     <Compile Include="Classes\BLL\IterationBLL.cs" />
     <Compile Include="Classes\BLL\RegistrarBLL.cs" />
+    <Compile Include="Classes\DAL\AnalistaDAL.cs" />
     <Compile Include="Classes\DAL\RegistrarDAL.cs" />
+    <Compile Include="Classes\Info\AnalistaInfo.cs" />
     <Compile Include="Classes\Info\ConfiguracaoInfo.cs" />
     <Compile Include="Classes\Info\IterationInfo.cs" />
     <Compile Include="Classes\Info\RegistrarInfo.cs" />
