@@ -10,6 +10,7 @@ namespace DevOpsIntegration.Classes.Info
         public int CdRegistro { get; set; }
         public int CdTipoAcesso { get; set; }
         public int CdAnalista { get; set; }
+        public int IdTipoAcesso { get; set; }
 
         public String DsCliente { get; set; }
         public String DsPalavraChave { get; set; }
@@ -17,11 +18,16 @@ namespace DevOpsIntegration.Classes.Info
         public String DsAcao { get; set; }
         public String DsConclusao { get; set; }
         public String DsSprint { get; set; }
+        public String DsInfoAdicional { get; set; }
+        public String DsAnalista { get; set; }
 
         public bool StBug { get; set; }
 
-        public TimeSpan? VlInicial { get; set; }
-        public TimeSpan? VlFinal { get; set; }
+
+
+
+        public TimeSpan? DtInicial { get; set; }
+        public TimeSpan? DtFinal { get; set; }
     }
 }
 

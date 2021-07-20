@@ -31,7 +31,7 @@ namespace DevOpsIntegration
             RegistrarInfo info = new RegistrarInfo();
             RegistrarBLL registrar = new RegistrarBLL();
             info.DsCliente = txtCliente.Text;
-            info.IdTipoAcesso = ddlTipoAcesso.SelectedValue;
+            info.IdTipoAcesso = Convert.ToInt32(ddlTipoAcesso.SelectedValue);
             info.DsAnalista = ddlAnalista.SelectedValue;
             info.DsMotivo = txtMotivo.Text;
             info.DsAcao = txtAcao.Text;
